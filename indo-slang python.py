@@ -1,8 +1,8 @@
 from lark import Lark, Transformer
 
-# =========================================================
+
 #   GRAMMAR — INDONESIAN SLANG PYTHON
-# =========================================================
+
 grammar = r"""
 start: statement+
 
@@ -60,17 +60,17 @@ NUMBER: /-?\d+(\.\d+)?/
 %ignore /#.*/ 
 """
 
-# =========================================================
+
 #   RUNTIME
-# =========================================================
+
 GLOBAL = {}
 FUNCTIONS = {}
 BREAK_FLAG = False
 
 
-# =========================================================
+
 #   INTERPRETER
-# =========================================================
+
 class Interpreter(Transformer):
 
     # ===== VALUES =====
@@ -184,18 +184,18 @@ class Interpreter(Transformer):
         GLOBAL.update(backup)
 
 
-# =========================================================
+
 #   RUNNER
-# =========================================================
+
 def run(code):
     parser = Lark(grammar, start="start", parser="lalr")
     tree = parser.parse(code)
     Interpreter().transform(tree)
 
 
-# =========================================================
+
 #   SAMPLE
-# =========================================================
+
 if __name__ == "__main__":
     program = r"""
     SET a 10
